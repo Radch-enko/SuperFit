@@ -1,0 +1,77 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="StartScreen.fragments.SignUp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edUserName"
+                style="@style/input_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="UserName" />
+
+            <EditText
+                android:id="@+id/edEmail"
+                style="@style/input_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/edCode"
+                style="@style/input_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Code"
+                android:inputType="number"
+                android:digits="123456789"/>
+
+            <EditText
+                android:id="@+id/edRepeatCode"
+                style="@style/input_fields"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Repeat Code"
+                android:inputType="number"
+                android:digits="123456789"/>
+
+            <Button
+                android:id="@+id/btnSignUp"
+                style="@style/btn_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableRight="@drawable/arror_right"
+                android:gravity="center"
+                android:text="Sign Up" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/arror_left"
+            style="@style/btn_default"/>
+
+    </LinearLayout>
+</FrameLayout>

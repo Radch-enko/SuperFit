@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Recipes">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/recipes_bg"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnReturn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#03FFFFFF"
+                android:scaleType="fitStart"
+                android:tint="#00FFFFFF"
+                app:srcCompat="@drawable/search_arrow_back" />
+
+            <TextView
+                android:id="@+id/tvRecipes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Recipes"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <SearchView
+            android:id="@+id/search_view"
+            style="@style/search_view"
+            android:background="@drawable/search_view_bg"
+            android:queryHint="Search..."
+            app:queryHint="Search..."
+            app:defaultQueryHint="Search..."
+            android:iconifiedByDefault="false"
+            app:iconifiedByDefault="false"
+            android:layout_marginTop="10dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbBalanced"
+                    style="@style/radioButton"
+                    android:text="Balanced" />
+
+                <RadioButton
+                    android:id="@+id/rbHighFiber"
+                    style="@style/radioButton"
+                    android:text="High-Fiber"/>
+
+                <RadioButton
+                    android:id="@+id/rbHighProtein"
+                    android:text="High-Protein"
+                    style="@style/radioButton" />
+            </RadioGroup>
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="30dp"
+        android:paddingTop="15dp" />
+
+</LinearLayout>
