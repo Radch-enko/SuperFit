@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superfit.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -41,9 +42,9 @@ public class RecipesRecyclerViewAdapter extends RecyclerView.Adapter<RecipesRecy
         holder.title.setText(list.get(position).getTitle());
         holder.kcal.setText(list.get(position).getKcal());
         holder.info.setText(list.get(position).getInfo());
-        holder.img.setImageDrawable(list.get(position).getImg());
+//        holder.img.setImageDrawable(list.get(position).getImg());
+        Picasso.get().load(list.get(position).getImg()).placeholder(R.drawable.no_image).into(holder.img);
     }
-
     @Override
     public int getItemCount() {
         return list.size();

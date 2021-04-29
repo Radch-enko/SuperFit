@@ -66,17 +66,17 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <RadioButton
+                <CheckBox
                     android:id="@+id/rbBalanced"
                     style="@style/radioButton"
                     android:text="Balanced" />
 
-                <RadioButton
+                <CheckBox
                     android:id="@+id/rbHighFiber"
                     style="@style/radioButton"
                     android:text="High-Fiber"/>
 
-                <RadioButton
+                <CheckBox
                     android:id="@+id/rbHighProtein"
                     android:text="High-Protein"
                     style="@style/radioButton" />

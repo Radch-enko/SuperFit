@@ -43,4 +43,13 @@ dependencies {
 
     // search view
     implementation 'androidx.appcompat:appcompat:1.0.0'
+
+    // For parsin json
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    // For connecting
+    implementation 'org.jsoup:jsoup:1.13.1'
+
+    // For downloading images
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

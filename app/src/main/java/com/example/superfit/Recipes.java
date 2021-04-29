@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import Recipes.*;
@@ -21,44 +25,83 @@ import adapters.RecipesRecyclerViewAdapter;
 public class Recipes extends AppCompatActivity {
 
     ArrayList<Recipe> list = new ArrayList<Recipe>();
-
+    RecipesRecyclerViewAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
 
-        list.add(new Recipe("1", "7177 kcal", "290g protein • 325g fat • 746g carbs", getResources().getDrawable(R.drawable.recipe1), RecipesTypes.BALANCED.toString()));
-        list.add(new Recipe("12", "7177 kcal", "290g protein • 325g fat • 746g carbs", getResources().getDrawable(R.drawable.recipe1), RecipesTypes.HIGH_FIBER.toString()));
-        list.add(new Recipe("123", "7177 kcal", "290g protein • 325g fat • 746g carbs", getResources().getDrawable(R.drawable.recipe1), RecipesTypes.HIGH_PROTEIN.toString()));
-
         SearchView searchView = (SearchView) findViewById(R.id.search_view);
 
         RecyclerView rv = findViewById(R.id.rv);
-        RecipesRecyclerViewAdapter adapter = new RecipesRecyclerViewAdapter(this, list);
+        adapter = new RecipesRecyclerViewAdapter(this, list);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+
+
 
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (searchView.getQuery().length() < query.length())
-                    adapter.getFilter().filter(query);
-                else adapter.getFilter().filter(query);
+                ParsingAPI parser = new ParsingAPI();
+
+                AsyncTask.execute(() -> {
+                    try {
+                        list = parser.parse("https://api.edamam.com/search?q=" + query + "&app_id=4da5a427&app_key=6dd6f99730da1737e964379d886e607d&diet=high-protein");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    runOnUiThread(() -> {
+                        adapter = new RecipesRecyclerViewAdapter(getApplicationContext(), list);
+                        adapter.notifyDataSetChanged();
+                        rv.setAdapter(adapter);
+                    });
+                });
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Toast.makeText(Recipes.this, newText, Toast.LENGTH_SHORT).show();
-                adapter.getFilter().filter(newText);
+//                ParsingAPI parser = new ParsingAPI();
+//
+//                AsyncTask.execute(() -> {
+//                    try {
+//                        list = parser.parse("https://api.edamam.com/search?q=" + newText + "&app_id=4da5a427&app_key=6dd6f99730da1737e964379d886e607d&diet=high-protein");
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    runOnUiThread(() -> {
+//                        adapter = new RecipesRecyclerViewAdapter(getApplicationContext(), list);
+//                        adapter.notifyDataSetChanged();
+//                        rv.setAdapter(adapter);
+//                    });
+//                });
                 return false;
             }
         });
 
         ImageButton btnReturn = findViewById(R.id.btnReturn);
         btnReturn.setOnClickListener(v -> finish());
+    }
 
+
+
+    public void startParsing(String newText){
+//        MyTask.execute(() -> {
+//
+//            try {
+//
+//            } catch (IOException | JSONException e) {
+//                e.printStackTrace();
+//            }
+//        });
     }
 }

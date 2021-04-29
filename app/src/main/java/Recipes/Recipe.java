@@ -1,16 +1,21 @@
 package Recipes;
 
-import android.graphics.drawable.Drawable;
+import androidx.annotation.NonNull;
 
 public class Recipe {
     private String title, kcal, info, type;
-    private Drawable img;
-    public Recipe(String title, String kcal, String info, Drawable img, String type){
+    private String img;
+    private String protein, fat, carbs;
+
+    public Recipe(String title, String kcal, String protein, String fat, String carbs, String img, String type){
         this.title = title;
         this.kcal = kcal;
-        this.info = info;
+        this.info = protein + " • " + fat + " • " + carbs;
         this.img = img;
         this.type = type;
+        this.protein = protein;
+        this.fat = fat;
+        this.carbs = carbs;
     }
 
     public String getTitle() {
@@ -33,15 +38,15 @@ public class Recipe {
         return info;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setInfo(String protein, String fat, String carbs) {
+        this.info = protein + " • " + fat + " • " + carbs;
     }
 
-    public Drawable getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(Drawable img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
@@ -51,5 +56,36 @@ public class Recipe {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "title: " + title + " kcal: " + kcal + "protein: " + protein + " fat: " + fat
+                + " carbs: " + carbs + " type: " + type;
+    }
+
+    public String getProtein() {
+        return protein;
+    }
+
+    public void setProtein(String protein) {
+        this.protein = protein;
+    }
+
+    public String getFat() {
+        return fat;
+    }
+
+    public void setFat(String fat) {
+        this.fat = fat;
+    }
+
+    public String getCarbs() {
+        return carbs;
+    }
+
+    public void setCarbs(String carbs) {
+        this.carbs = carbs;
     }
 }
