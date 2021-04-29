@@ -1,9 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".Recipe_detail">
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/recipe_bg"
+    android:gravity="center">
+
+    <ImageButton
+        android:id="@+id/btnReturn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:src="@drawable/arror_left"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/tvSuperFit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="Recipe"
+        android:textColor="@color/white"
+        android:textSize="36sp" />
+</FrameLayout>
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Recipe_detail">
+    android:layout_marginTop="-25dp"
+    android:background="@drawable/main_activity_bottom_rounded"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:paddingTop="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/myBodyWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tvRecipeName"
+            style="@style/h2"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Chicken Vesuvio"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvRecipeKcal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="7177 kcal"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/tvRecipeBJU"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="290g protein • 325g fat • 746g carbs"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/tvIngredientsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Ingredients:"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+        <ListView
+            android:id="@+id/ingredientLines"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</LinearLayout>

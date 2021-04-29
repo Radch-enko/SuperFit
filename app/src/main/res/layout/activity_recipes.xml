@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
 
             <ImageButton
                 android:id="@+id/btnReturn"
@@ -61,34 +62,50 @@
             android:layout_marginTop="15dp">
 
             <RadioGroup
+                android:id="@+id/rg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/rbBalanced"
+                    android:id="@+id/rbLowFat"
                     style="@style/radioButton"
-                    android:text="Balanced" />
+                    android:text="Low-fat" />
 
                 <CheckBox
-                    android:id="@+id/rbHighFiber"
+                    android:id="@+id/rbLowCarb"
                     style="@style/radioButton"
-                    android:text="High-Fiber"/>
+                    android:text="Low-Carb" />
 
                 <CheckBox
                     android:id="@+id/rbHighProtein"
-                    android:text="High-Protein"
-                    style="@style/radioButton" />
+                    style="@style/radioButton"
+                    android:text="High-Protein" />
             </RadioGroup>
         </LinearLayout>
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="30dp"
-        android:paddingTop="15dp" />
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="30dp"
+            android:paddingTop="15dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </FrameLayout>
 
 </LinearLayout>

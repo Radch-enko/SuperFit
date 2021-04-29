@@ -1,7 +1,5 @@
 package Recipes;
 
-import android.os.AsyncTask;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,7 +48,8 @@ public class ParsingAPI {
                         curRecipe.getJSONArray("digest").getJSONObject(1).getString("total"),
                         curRecipe.getJSONArray("digest").getJSONObject(2).getString("total"),
                         curRecipe.getString("image"),
-                        curRecipe.getString("dietLabels") ));
+                        curRecipe.getJSONArray("dietLabels"),
+                        curRecipe.getJSONArray("ingredientLines")));
 
                 System.out.println(outList.get(i).toString());
             }
