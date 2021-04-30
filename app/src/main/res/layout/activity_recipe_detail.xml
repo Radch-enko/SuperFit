@@ -6,7 +6,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-tools:context=".Recipe_detail">
+tools:context="RecipesScreen.Recipe_detail">
 
 <FrameLayout
     android:layout_width="match_parent"

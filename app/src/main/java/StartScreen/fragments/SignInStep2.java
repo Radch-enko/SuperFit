@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.superfit.MainActivity;
+import MainScreen.Exercise;
+import MainScreen.MainActivity;
+
 import com.example.superfit.R;
 
 public class SignInStep2 extends Fragment {
@@ -25,7 +27,7 @@ public class SignInStep2 extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
-                Intent intent = new Intent(getContext(), MainActivity.class);
+                Intent intent = new Intent(getContext(), MainScreen.MainActivity.class);
                 startActivity(intent);
             }
         });

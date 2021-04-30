@@ -1,4 +1,4 @@
-package Recipes;
+package RecipesScreen;
 
 import androidx.annotation.NonNull;
 

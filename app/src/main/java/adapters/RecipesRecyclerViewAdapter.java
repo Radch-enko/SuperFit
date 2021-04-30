@@ -10,18 +10,17 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.superfit.R;
-import com.example.superfit.Recipe_detail;
+import RecipesScreen.Recipe_detail;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import Recipes.Recipe;
+import RecipesScreen.Recipe;
 
 public class RecipesRecyclerViewAdapter extends RecyclerView.Adapter<RecipesRecyclerViewAdapter.ViewHolder> implements Filterable {
     private ArrayList<Recipe> list, listFull;

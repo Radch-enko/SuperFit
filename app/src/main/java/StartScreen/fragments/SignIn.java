@@ -25,7 +25,7 @@ public class SignIn extends Fragment {
         ViewPager viewPager = getActivity().findViewById(R.id.viewPager);
         Button btnSignIn = view.findViewById(R.id.btnSignIn);
         btnSignIn.setOnClickListener(v -> {
-            viewPager.setCurrentItem(1, false);
+            viewPager.setCurrentItem(2, false);
             getActivity().findViewById(R.id.btn_return).setVisibility(View.VISIBLE);
         });
 
@@ -35,7 +35,7 @@ public class SignIn extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().findViewById(R.id.btn_return).setVisibility(View.GONE);
-                viewPager.setCurrentItem(2, false);
+                viewPager.setCurrentItem(0, false);
             }
         });
         return view;

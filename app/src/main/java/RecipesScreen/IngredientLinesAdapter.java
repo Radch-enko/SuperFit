@@ -1,4 +1,4 @@
-package Recipes;
+package RecipesScreen;
 
 import android.content.Context;
 import android.view.LayoutInflater;

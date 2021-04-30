@@ -1,4 +1,4 @@
-package com.example.superfit;
+package RecipesScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,12 +12,12 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 
+import com.example.superfit.R;
+
 import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import Recipes.*;
 
 import adapters.RecipesRecyclerViewAdapter;
 
