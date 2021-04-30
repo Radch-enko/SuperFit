@@ -1,6 +1,7 @@
 package MainScreen;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import adapters.ExercisesListAdapter;
 
 
     public class MainActivity extends AppCompatActivity {
+
+        private String AUTH_STATUS = "authorization";
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,8 @@ import adapters.ExercisesListAdapter;
 
             Button btnSignOut = findViewById(R.id.btnSignOut);
             btnSignOut.setOnClickListener(v -> {
+                SharedPreferences.Editor editor = getSharedPreferences(AUTH_STATUS, MODE_PRIVATE).edit();
+                editor.clear().commit();
                 finish();
                 Intent goToSplash = new Intent(getApplicationContext(), Splash.class);
                 startActivity(goToSplash);

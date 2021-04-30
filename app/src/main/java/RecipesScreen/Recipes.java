@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 
+
 import com.example.superfit.R;
 
 import org.json.JSONException;

@@ -8,32 +8,38 @@ android:layout_height="match_parent"
 android:orientation="vertical"
 tools:context="RecipesScreen.Recipe_detail">
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/recipe_bg"
-    android:gravity="center">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:gravity="center">
 
-    <ImageButton
-        android:id="@+id/btnReturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/transparent"
-        android:src="@drawable/arror_left"
-        android:layout_marginTop="30dp"/>
+        <ImageView
+            android:id="@+id/recipe_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/recipe_bg" />
 
-    <TextView
-        android:id="@+id/tvSuperFit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:fontFamily="@font/montserrat_bold"
-        android:gravity="center"
-        android:text="Recipe"
-        android:textColor="@color/white"
-        android:textSize="36sp" />
-</FrameLayout>
+        <ImageButton
+            android:id="@+id/btnReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/transparent"
+            android:src="@drawable/arror_left" />
+
+        <TextView
+            android:id="@+id/tvSuperFit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:text="Recipe"
+            android:textColor="@color/white"
+            android:textSize="36sp"/>
+    </FrameLayout>
 
 <LinearLayout
     android:layout_width="match_parent"

@@ -17,10 +17,12 @@ import com.example.superfit.R;
 import adapters.CustomViewPager;
 import adapters.SplashViewAdapter;
 
+
 public class Splash extends AppCompatActivity {
 
     CustomViewPager viewPager;
     private String AUTH_STATUS = "authorization";
+    public SplashViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,12 @@ public class Splash extends AppCompatActivity {
         }
 
         viewPager = findViewById(R.id.viewPager);
-        SplashViewAdapter adapter = new SplashViewAdapter(getSupportFragmentManager());
+        adapter = new SplashViewAdapter(getSupportFragmentManager());
+
+        viewPager.disableScroll(true);
+
+
+        ImageButton btn_return = findViewById(R.id.btn_return);
 
 
         new java.util.Timer().schedule(
@@ -43,59 +50,26 @@ public class Splash extends AppCompatActivity {
                     @Override
                     public void run() {
                         viewPager.disableScroll(true);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (checkAuthorization()){
-//                                            Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
-                                            viewPager.setCurrentItem(1);
-                                        }else{
-//                                            Toast.makeText(this, "0", Toast.LENGTH_SHORT).show();
-                                            viewPager.setCurrentItem(0);
-                                        }
-
-                                        viewPager.setAdapter(adapter);
-                                    }
-                                });
-
-                            }
-                        });
+                        runOnUiThread(() -> runOnUiThread(() -> {
+                            btn_return.setVisibility(View.VISIBLE);
+                            viewPager.setAdapter(adapter);
+                        }));
                     }
                 },
                 2000
         );
 
-
-
-
-
-
-
-        ImageButton btn_return = findViewById(R.id.btn_return);
-        btn_return.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewPager.setCurrentItem(1, false);
-                btn_return.setVisibility(View.GONE);
-            }
+        btn_return.setOnClickListener(v -> {
+            setSignInFragment();
+            btn_return.setVisibility(View.GONE);
         });
 
     }
 
-
-    private boolean checkAuthorization(){
-        SharedPreferences prefs = getApplicationContext().getSharedPreferences(AUTH_STATUS, MODE_PRIVATE);
-        String userName = prefs.getString("userName", "none");
-        String email = prefs.getString("email", "none");
-        int code = prefs.getInt("code", 0);
-
-        if (userName == "none" || email == "none" || code == 0) return true;
-
-        Toast.makeText(this, "Авторизация прошла успешно!", Toast.LENGTH_SHORT).show();
-        return false;
+    private void setSignUpFragment(){
+        viewPager.setCurrentItem(0, false);
+    }
+    private void setSignInFragment(){
+        viewPager.setCurrentItem(1, false);
     }
 }

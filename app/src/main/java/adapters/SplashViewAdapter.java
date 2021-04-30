@@ -1,10 +1,5 @@
 package adapters;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.service.controls.templates.ControlButton;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,8 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import StartScreen.fragments.SignIn;
 import StartScreen.fragments.SignInStep2;
 import StartScreen.fragments.SignUp;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class SplashViewAdapter extends FragmentPagerAdapter {
 
@@ -26,14 +19,16 @@ public class SplashViewAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         switch (position){
-            case 0:
-                return new SignUp();
-            case 2:
-                return new SignInStep2();
             case 1:
+                System.out.println("case 1 called");
                 return new SignIn();
+            case 2:
+                System.out.println("case 2 called");
+                return new SignInStep2();
+            default:
+                System.out.println("case SingUp called");
+                return new SignUp();
         }
-        return null;
     }
 
     @Override

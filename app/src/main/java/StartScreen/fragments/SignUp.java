@@ -17,6 +17,7 @@ import com.example.superfit.R;
 
 import MainScreen.MainActivity;
 import adapters.CustomViewPager;
+import adapters.SplashViewAdapter;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -24,12 +25,15 @@ import static android.content.Context.MODE_PRIVATE;
 public class SignUp extends Fragment {
 
     private String AUTH_STATUS = "authorization";
+    CustomViewPager viewPager;
+    SplashViewAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+
         Button btnSignIn = view.findViewById(R.id.btnSignIn);
         Button btnSignUp = view.findViewById(R.id.btnSignUp);
 
@@ -39,23 +43,25 @@ public class SignUp extends Fragment {
         EditText edCode = view.findViewById(R.id.edCode);
         EditText edRepeatCode = view.findViewById(R.id.edRepeatCode);
 
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CustomViewPager viewPager = getActivity().findViewById(R.id.viewPager);
-                viewPager.setCurrentItem(1, false);
-            }
-        });
+        viewPager = getActivity().findViewById(R.id.viewPager);
+        adapter = new SplashViewAdapter(getChildFragmentManager());
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkValidation(edUserName, edEmail, edCode, edRepeatCode)){
-                    registration(edUserName, edEmail, edCode);
-                    getActivity().finish();
-                    Intent intent = new Intent(getContext(), MainActivity.class);
-                    startActivity(intent);
-                }
+        if (checkAuthorization()){
+            setSignInFragment();
+            adapter.notifyDataSetChanged();
+        }else{
+            setSignUpFragment();
+            adapter.notifyDataSetChanged();
+        }
+
+        btnSignIn.setOnClickListener(v -> viewPager.setCurrentItem(1, false));
+
+        btnSignUp.setOnClickListener(v -> {
+            if (checkValidation(edUserName, edEmail, edCode, edRepeatCode)){
+                registration(edUserName, edEmail, edCode);
+                getActivity().finish();
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -90,5 +96,23 @@ public class SignUp extends Fragment {
         }
 
         return true;
+    }
+
+    private boolean checkAuthorization(){
+        SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences(AUTH_STATUS, MODE_PRIVATE);
+        String userName = prefs.getString("userName", "none");
+        String email = prefs.getString("email", "none");
+        int code = prefs.getInt("code", 0);
+
+        if (userName == "none" || email == "none" || code == 0) return false;
+
+        return true;
+    }
+
+    private void setSignUpFragment(){
+        viewPager.setCurrentItem(0, false);
+    }
+    private void setSignInFragment(){
+        viewPager.setCurrentItem(1, false);
     }
 }

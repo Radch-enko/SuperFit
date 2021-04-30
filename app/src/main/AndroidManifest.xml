@@ -4,6 +4,8 @@
     package="com.example.superfit">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/appicon"
@@ -11,6 +13,7 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperFit">
+        <service android:name="HelpersObjects.VibrateService"/>
         <activity android:name="ExerciseListScreen.ExercisesListActivity"></activity>
         <activity android:name="RecipesScreen.Recipe_detail" />
         <activity android:name="RecipesScreen.Recipes" />
