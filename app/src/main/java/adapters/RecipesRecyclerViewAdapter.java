@@ -93,10 +93,8 @@ public class RecipesRecyclerViewAdapter extends RecyclerView.Adapter<RecipesRecy
                 filteredList.addAll(listFull);
             }else {
                 String filteredPattern = constraint.toString();
-                System.out.println("filteredPattern: " + filteredPattern);
 
                 for (Recipe item: listFull){
-                    System.out.println("item.getType(): " + item.getType());
                     if (item.getType().contains(filteredPattern)){
                         filteredList.add(item);
                     }

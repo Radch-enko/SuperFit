@@ -57,17 +57,17 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
         btn_return.setVisibility(View.VISIBLE);
 
         TextView tvUserName = view.findViewById(R.id.tvUserName);
-        tvUserName.setText(getUserName());
+        tvUserName.setText(getUserEmail());
 
         builder = new StringBuilder();
 
         return view;
     }
 
-    private String getUserName(){
+    private String getUserEmail(){
         SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences(AUTH_STATUS, MODE_PRIVATE);
-        String userName = prefs.getString("userName", "none");
-        return userName;
+        String email = prefs.getString("email", "none");
+        return email;
     }
 
     @Override
@@ -108,6 +108,7 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
             }
             if (builder.toString().length() == 4) {
                 if (isRightPassword()){
+                    getActivity().finish();
                     Intent goToMainScreen = new Intent(getContext(), MainActivity.class);
                     startActivity(goToMainScreen);
                 }else{
@@ -119,7 +120,6 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
                 }
             }
         }
-        System.out.println("Текущий код: " + builder.toString());
     }
 
     private void incorrectPasswornAlert() {

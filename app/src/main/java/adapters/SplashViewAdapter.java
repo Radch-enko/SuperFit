@@ -20,13 +20,10 @@ public class SplashViewAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 1:
-                System.out.println("case 1 called");
                 return new SignIn();
             case 2:
-                System.out.println("case 2 called");
                 return new SignInStep2();
             default:
-                System.out.println("case SingUp called");
                 return new SignUp();
         }
     }

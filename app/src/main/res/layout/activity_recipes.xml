@@ -68,17 +68,17 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/rbLowFat"
                     style="@style/radioButton"
                     android:text="Low-fat" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/rbLowCarb"
                     style="@style/radioButton"
                     android:text="Low-Carb" />
 
-                <CheckBox
+                <RadioButton
                     android:id="@+id/rbHighProtein"
                     style="@style/radioButton"
                     android:text="High-Protein" />

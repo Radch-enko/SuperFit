@@ -30,12 +30,23 @@ public class SignIn extends Fragment {
         edUserName = view.findViewById(R.id.edUserName);
         ViewPager viewPager = getActivity().findViewById(R.id.viewPager);
         Button btnSignIn = view.findViewById(R.id.btnSignIn);
+
+        String userName = getUserName();
+
         btnSignIn.setOnClickListener(v -> {
-            viewPager.setCurrentItem(2, false);
-            getActivity().findViewById(R.id.btn_return).setVisibility(View.VISIBLE);
+            if (edUserName.getText().toString().equals(userName)){
+                viewPager.setCurrentItem(2, false);
+                getActivity().findViewById(R.id.btn_return).setVisibility(View.VISIBLE);
+            }else{
+                Toast.makeText(getContext(), "Пользователь с таким именем не найден! Зарегистрируйтесь!", Toast.LENGTH_SHORT).show();
+            }
+            
         });
 
-        if (getUserName()){
+
+
+        if (userName != "none"){
+            edUserName.setText(getUserName());
             viewPager.setCurrentItem(2);
         }
 
@@ -51,13 +62,9 @@ public class SignIn extends Fragment {
         return view;
     }
 
-    private boolean getUserName(){
+    private String getUserName(){
         SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences(AUTH_STATUS, MODE_PRIVATE);
         String userName = prefs.getString("userName", "none");
-        if (userName == "none") return false;
-
-        edUserName.setText(userName);
-
-        return true;
+        return userName;
     }
 }

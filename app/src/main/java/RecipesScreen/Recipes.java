@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.SearchView;
 
 
@@ -26,10 +27,10 @@ public class Recipes extends AppCompatActivity {
 
     ArrayList<Recipe> list = new ArrayList<Recipe>();
     RecipesRecyclerViewAdapter adapter;
-    CheckBox rbLowFat, rbLowCarb, rbHighProtein;
+    RadioButton rbLowFat, rbLowCarb, rbHighProtein;
 
     // строка для фильтрации по БЖУ
-    StringBuilder filterQueryBuilder;
+    String filterQueryBuilder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class Recipes extends AppCompatActivity {
         rbLowCarb = findViewById(R.id.rbLowCarb);
         rbHighProtein = findViewById(R.id.rbHighProtein);
 
-        filterQueryBuilder = new StringBuilder();
+        filterQueryBuilder = "";
 
 
         RecyclerView rv = findViewById(R.id.rv);
@@ -54,22 +55,22 @@ public class Recipes extends AppCompatActivity {
 
         rbLowFat.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                filterQueryBuilder.append(RecipesTypes.LOW_FAT.toString());
-                adapter.getFilter().filter(filterQueryBuilder.toString());
+                filterQueryBuilder = RecipesTypes.LOW_FAT.toString();
+                adapter.getFilter().filter(filterQueryBuilder);
             }
         });
 
         rbLowCarb.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                filterQueryBuilder.append(RecipesTypes.LOW_CARB.toString());
-                adapter.getFilter().filter(filterQueryBuilder.toString());
+                filterQueryBuilder = RecipesTypes.LOW_CARB.toString();
+                adapter.getFilter().filter(filterQueryBuilder);
             }
         });
 
         rbHighProtein.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                filterQueryBuilder.append(RecipesTypes.HIGH_PROTEIN.toString());
-                adapter.getFilter().filter(filterQueryBuilder.toString());
+                filterQueryBuilder = RecipesTypes.HIGH_PROTEIN.toString();
+                adapter.getFilter().filter(filterQueryBuilder);
             }
         });
 
