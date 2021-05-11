@@ -1,5 +1,8 @@
 package MainScreen;
 
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -14,17 +17,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import ExerciseListScreen.ExercisesListActivity;
 import com.example.superfit.R;
 
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Set;
 
 import RecipesScreen.Recipes;
 import StartScreen.fragments.Splash;
 import adapters.ExercisesListAdapter;
+import me.aflak.bluetooth.Bluetooth;
 
 
-
-    public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
         private String AUTH_STATUS = "authorization";
+
+    //Сокет, с помощью которого мы будем отправлять данные на Arduino
+    BluetoothSocket clientSocket;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -73,5 +83,51 @@ import adapters.ExercisesListAdapter;
                 startActivity(goToSplash);
             });
 
+
+            BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();
+
+            ArrayList<BluetoothDevice> list = null;
+                list = getBondedBtDevices(bluetooth);
+
+            list.forEach(v -> {
+                System.out.println(" CurItem : " + v.getName());
+            });
+            System.out.println("Lenght = " + list.size());
+
+                    //Инициируем соединение с устройством
+            Method m = null;
+            try {
+                m = list.get(0).getClass().getMethod(
+                "createRfcommSocket", new Class[] {int.class});
+                System.out.println("Method : " + m.getName());
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                clientSocket = (BluetoothSocket) m.invoke(list.get(0), 1);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            try {
+                System.out.println("clientSocket.getRemoteDevice() " +  clientSocket.getRemoteDevice());
+                clientSocket.connect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
+
+        private ArrayList<BluetoothDevice> getBondedBtDevices(BluetoothAdapter bluetooth) {
+        Set<BluetoothDevice> deviceSet = bluetooth.getBondedDevices();
+        ArrayList<BluetoothDevice> tmpArrayList = new ArrayList<>();
+        if (deviceSet.size() > 0) {
+            for (BluetoothDevice device: deviceSet) {
+                tmpArrayList.add(device);
+            }
+        }
+        return tmpArrayList;
+    }
     }
