@@ -11,4 +11,5 @@
     <color name="card_transparent">#E94A4848</color>
     <color name="gray">#666666</color>
     <color name="purple">#B461F5</color>
+    <color name="gray_main">#c6c6c6</color>
 </resources>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#282828"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context="mybody_screen.MyBodyActivity">
+
+    <TextView
+        android:id="@+id/tvMyBody"
+        style="@style/h2"
+        android:textColor="@color/white"
+        android:text="My body" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@string/undefined"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnChangeWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background"
+                android:gravity="center"
+                android:text="Edit"
+                android:textAllCaps="false"
+                android:textColor="@color/gray_main" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@string/undefined"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnChangeHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_background"
+                android:gravity="center"
+                android:text="Edit"
+                android:textAllCaps="false"
+                android:textColor="@color/gray_main" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/h2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="12"
+                android:text="My Progress"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnSeeAll2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:fontFamily="@font/montserrat"
+                android:text="See all"
+                android:textAllCaps="false"
+                android:textColor="@color/gray_main" />
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/ivBefore"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/before" />
+
+                    <TextView
+                        android:id="@+id/tvPhotoDate"
+                        style="@style/my_progress_photo_date_textView"
+                        android:text="21.04.2019" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/ivAfter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/after" />
+
+                    <TextView
+                        android:id="@+id/tvPhotoDate2"
+                        style="@style/my_progress_photo_date_textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="03.01.2020" />
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_trainProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Train progress"
+        android:drawableRight="@drawable/arror_right" />
+
+    <Button
+        android:id="@+id/btn_Statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Statistics"
+        android:drawableRight="@drawable/arror_right"/>
+</LinearLayout>

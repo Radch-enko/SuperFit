@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,15 +27,20 @@ import java.util.Set;
 import RecipesScreen.Recipes;
 import StartScreen.fragments.Splash;
 import adapters.ExercisesListAdapter;
+import mybody_screen.MyBodyActivity;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private String AUTH_STATUS = "authorization";
 
-    //Сокет, с помощью которого мы будем отправлять данные на Arduino
-    BluetoothSocket clientSocket;
+    Button btnDetails;
 
+    private static final String BODY_DATA = "BODY_DATA";
+    private static final String HEIGHT = "height", WEIGHT = "weight";
+
+    TextView tvWeight, tvHeight;
+    SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
 
+        tvWeight = findViewById(R.id.tvWeight);
+        tvHeight = findViewById(R.id.tvHeight);
         Button btnSeeAll = findViewById(R.id.btnSeeAll);
 
         ArrayList<Exercise> listCollapsed = new ArrayList<>();
@@ -82,51 +90,20 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToSplash);
         });
 
-
-        BluetoothAdapter bluetooth = BluetoothAdapter.getDefaultAdapter();
-
-        ArrayList<BluetoothDevice> list = null;
-            list = getBondedBtDevices(bluetooth);
-
-        list.forEach(v -> {
-            System.out.println(" CurItem : " + v.getName());
+        btnDetails = findViewById(R.id.btnDetails);
+        btnDetails.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MyBodyActivity.class);
+            startActivity(intent);
         });
-        System.out.println("Lenght = " + list.size());
-
-                //Инициируем соединение с устройством
-        Method m = null;
-        try {
-            m = list.get(0).getClass().getMethod(
-            "createRfcommSocket", new Class[] {int.class});
-            System.out.println("Method : " + m.getName());
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            clientSocket = (BluetoothSocket) m.invoke(list.get(0), 1);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        try {
-            System.out.println("clientSocket.getRemoteDevice() " +  clientSocket.getRemoteDevice());
-            clientSocket.connect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
     }
 
-    private ArrayList<BluetoothDevice> getBondedBtDevices(BluetoothAdapter bluetooth) {
-        Set<BluetoothDevice> deviceSet = bluetooth.getBondedDevices();
-        ArrayList<BluetoothDevice> tmpArrayList = new ArrayList<>();
-        if (deviceSet.size() > 0) {
-            for (BluetoothDevice device: deviceSet) {
-                tmpArrayList.add(device);
-            }
-        }
-        return tmpArrayList;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        prefs = this.getSharedPreferences(BODY_DATA, MODE_PRIVATE);
+
+        tvHeight.setText(prefs.getString(HEIGHT, "Undefined") + " cm");
+        tvWeight.setText(prefs.getString(WEIGHT, "Undefined") + " kg");
     }
 }

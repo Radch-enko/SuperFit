@@ -4,7 +4,7 @@
     package="com.example.superfit">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -14,8 +14,11 @@
         android:roundIcon="@drawable/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.SuperFit">
-        <service android:name="HelpersObjects.VibrateService"/>
-        <activity android:name="ExerciseListScreen.ExercisesListActivity"></activity>
+        <activity android:name="mybody_screen.MyBodyActivity"></activity>
+
+        <service android:name="HelpersObjects.VibrateService" />
+
+        <activity android:name="ExerciseListScreen.ExercisesListActivity" />
         <activity android:name="RecipesScreen.Recipe_detail" />
         <activity android:name="RecipesScreen.Recipes" />
         <activity android:name="StartScreen.fragments.Splash">
@@ -25,8 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="MainScreen.MainActivity"></activity>
-        <activity android:name="MainScreen.MainActivity"
+        <activity android:name="MainScreen.MainActivity" />
+        <activity
+            android:name="MainScreen.MainActivity"
             tools:ignore="DuplicateActivity" />
     </application>
 
