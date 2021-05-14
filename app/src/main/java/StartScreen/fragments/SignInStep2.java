@@ -61,7 +61,7 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
         btn6.setOnClickListener(this);
         btn7.setOnClickListener(this);
         btn8.setOnClickListener(this);
-        btn8.setOnClickListener(this);
+        btn9.setOnClickListener(this);
 
         btn_list = new ArrayList<>();
         btn_list.add(btn1);
@@ -93,9 +93,13 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Toast.makeText(getActivity(), "onCLick", Toast.LENGTH_SHORT).show();
         //Создаем новое намерение для запуска сервиса использования вибрации
         Intent intentVibrate =new Intent(getContext(), VibrateService.class);
         getActivity().startService(intentVibrate);
+
+
+
         if (builder.toString().length() < 4){
             switch (v.getId()){
                 case R.id.button:
@@ -125,14 +129,16 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
                 case R.id.button9:
                     builder.append( btn9.getText().toString() );
                     break;
-
             }
-            if (builder.toString().length() == 4) {
-                if (isRightPassword()){
+
+            if (builder.toString().length() == 4){
+//            Toast.makeText(getActivity(), "builder.toString().lenght()", Toast.LENGTH_SHORT).show();
+                if ( isRightPassword() ){
                     getActivity().finish();
                     Intent goToMainScreen = new Intent(getContext(), MainActivity.class);
                     startActivity(goToMainScreen);
-                }else{
+                }
+                else{
                     wrongPasswordAlert();
                     getActivity().startService(intentVibrate);
                     getActivity().startService(intentVibrate);
@@ -142,6 +148,9 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
                 }
             }
         }
+
+        System.out.println("Builder.length = " + builder.length());
+
         mixButtons(btn_list);
     }
 

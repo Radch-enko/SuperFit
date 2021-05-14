@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -25,6 +26,8 @@ import adapters.RecipesRecyclerViewAdapter;
 
 public class Recipes extends AppCompatActivity {
 
+
+
     ArrayList<Recipe> list = new ArrayList<Recipe>();
     RecipesRecyclerViewAdapter adapter;
     RadioButton rbLowFat, rbLowCarb, rbHighProtein;
@@ -36,6 +39,14 @@ public class Recipes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
+
+        // скрываю панель навигации
+        if(Build.VERSION.SDK_INT >= 19)
+        {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
 
         SearchView searchView = (SearchView) findViewById(R.id.search_view);
         ProgressBar progressBar = findViewById(R.id.progressBar);

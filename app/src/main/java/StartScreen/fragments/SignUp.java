@@ -45,6 +45,9 @@ public class SignUp extends Fragment {
         viewPager = getActivity().findViewById(R.id.viewPager);
         adapter = new SplashViewAdapter(getChildFragmentManager());
 
+        // скрываю "стрелочку" по которой происходит возврат
+        getActivity().findViewById(R.id.btn_return).setVisibility(View.GONE);
+
         if (checkAuthorization()){
             setSignInFragment();
         }else{
