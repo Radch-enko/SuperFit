@@ -19,8 +19,7 @@ public class VibrateService extends Service {
 
         vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
-        //Указываем длительность вибрации в миллисекундах,
-        //в нашем примере будет вибро-сигнал длительностью в 2 секунды
+        //Указываем длительность вибрации в миллисекундах
         vibrator.vibrate(50);
     }
 

@@ -41,7 +41,5 @@ public class ExercisesListActivity extends AppCompatActivity {
 
 
         btnReturn.setOnClickListener(v -> finish());
-
-
     }
 }

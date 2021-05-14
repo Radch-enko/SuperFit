@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // скрываю панель навигации
         if(Build.VERSION.SDK_INT >= 19)
         {
             getWindow().getDecorView().setSystemUiVisibility(
@@ -73,12 +74,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button btnRecipes = findViewById(R.id.btnRecipes);
-        btnRecipes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Recipes.class);
-                startActivity(intent);
-            }
+        btnRecipes.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), Recipes.class);
+            startActivity(intent);
         });
 
         Button btnSignOut = findViewById(R.id.btnSignOut);
@@ -102,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         prefs = this.getSharedPreferences(BODY_DATA, MODE_PRIVATE);
-
         tvHeight.setText(prefs.getString(HEIGHT, "Undefined") + " cm");
         tvWeight.setText(prefs.getString(WEIGHT, "Undefined") + " kg");
     }

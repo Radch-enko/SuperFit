@@ -2,10 +2,12 @@ package StartScreen.fragments;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +17,26 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import HelpersObjects.VibrateService;
-import MainScreen.Exercise;
 import MainScreen.MainActivity;
 
 import com.example.superfit.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class SignInStep2 extends Fragment implements View.OnClickListener {
     private String AUTH_STATUS = "authorization";
     StringBuilder builder;
+
     Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
 
+
+    ArrayList<Button> btn_list;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +62,17 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
         btn7.setOnClickListener(this);
         btn8.setOnClickListener(this);
         btn8.setOnClickListener(this);
+
+        btn_list = new ArrayList<>();
+        btn_list.add(btn1);
+        btn_list.add(btn2);
+        btn_list.add(btn3);
+        btn_list.add(btn4);
+        btn_list.add(btn5);
+        btn_list.add(btn6);
+        btn_list.add(btn7);
+        btn_list.add(btn8);
+        btn_list.add(btn9);
 
         ImageButton btn_return = getActivity().findViewById(R.id.btn_return);
         btn_return.setVisibility(View.VISIBLE);
@@ -112,17 +133,19 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
                     Intent goToMainScreen = new Intent(getContext(), MainActivity.class);
                     startActivity(goToMainScreen);
                 }else{
-                    incorrectPasswornAlert();
+                    wrongPasswordAlert();
                     getActivity().startService(intentVibrate);
                     getActivity().startService(intentVibrate);
                     builder.setLength(0);
+                    setDefaultButtons(btn_list);
                     return;
                 }
             }
         }
+        mixButtons(btn_list);
     }
 
-    private void incorrectPasswornAlert() {
+    private void wrongPasswordAlert() {
         Toast.makeText(getContext(), "Неправильный пароль", Toast.LENGTH_SHORT).show();
     }
 
@@ -134,5 +157,24 @@ public class SignInStep2 extends Fragment implements View.OnClickListener {
             return true;
 
         return false;
+    }
+
+    private void mixButtons(ArrayList<Button> list){
+        Integer[] values = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        ArrayList btn_values = new ArrayList();
+        Collections.addAll(btn_values, values);
+
+        // собственно перемешивание
+        Collections.shuffle(btn_values);
+
+        for (int i = 0; i < list.size(); i++){
+            list.get(i).setText(btn_values.get(i).toString());
+        }
+    }
+
+    private void setDefaultButtons(ArrayList<Button> list){
+        for (int i =0; i< list.size(); i++){
+            list.get(i).setText(String.valueOf(i + 1));
+        }
     }
 }

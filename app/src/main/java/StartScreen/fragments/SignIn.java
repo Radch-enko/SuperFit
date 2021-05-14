@@ -31,10 +31,12 @@ public class SignIn extends Fragment {
         ViewPager viewPager = getActivity().findViewById(R.id.viewPager);
         Button btnSignIn = view.findViewById(R.id.btnSignIn);
 
+        // имя пользователя указанное при регистрации
         String userName = getUserName();
 
         btnSignIn.setOnClickListener(v -> {
             if (edUserName.getText().toString().equals(userName)){
+                // Если имя пользователя в поле ввода совпадет с тем, что при регистрации
                 viewPager.setCurrentItem(2, false);
                 getActivity().findViewById(R.id.btn_return).setVisibility(View.VISIBLE);
             }else{
@@ -43,8 +45,7 @@ public class SignIn extends Fragment {
             
         });
 
-
-
+        // Автозаполнение поля ввода сохраннеными данными
         if (userName != "none"){
             edUserName.setText(getUserName());
             viewPager.setCurrentItem(2);
@@ -52,17 +53,16 @@ public class SignIn extends Fragment {
 
 
         Button btnSignUp = view.findViewById(R.id.btnSignUp);
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().findViewById(R.id.btn_return).setVisibility(View.GONE);
-                viewPager.setCurrentItem(0, false);
-            }
+        btnSignUp.setOnClickListener(v -> {
+            // скрываю "стрелочку" по которой происходит возврат
+            getActivity().findViewById(R.id.btn_return).setVisibility(View.GONE);
+            viewPager.setCurrentItem(0, false);
         });
         return view;
     }
 
     private String getUserName(){
+        // получение имени пользователя из бд
         SharedPreferences prefs = getActivity().getApplicationContext().getSharedPreferences(AUTH_STATUS, MODE_PRIVATE);
         String userName = prefs.getString("userName", "none");
         return userName;

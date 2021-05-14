@@ -41,15 +41,12 @@ public class Splash extends AppCompatActivity {
 
         viewPager.disableScroll(true);
 
-
         ImageButton btn_return = findViewById(R.id.btn_return);
-
 
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
                     @Override
                     public void run() {
-                        viewPager.disableScroll(true);
                         runOnUiThread(() -> runOnUiThread(() -> {
                             btn_return.setVisibility(View.VISIBLE);
                             viewPager.setAdapter(adapter);
@@ -66,9 +63,6 @@ public class Splash extends AppCompatActivity {
 
     }
 
-    private void setSignUpFragment(){
-        viewPager.setCurrentItem(0, false);
-    }
     private void setSignInFragment(){
         viewPager.setCurrentItem(1, false);
     }

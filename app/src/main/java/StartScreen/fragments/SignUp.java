@@ -37,7 +37,6 @@ public class SignUp extends Fragment {
         Button btnSignIn = view.findViewById(R.id.btnSignIn);
         Button btnSignUp = view.findViewById(R.id.btnSignUp);
 
-
         EditText edUserName = view.findViewById(R.id.edUserName);
         EditText edEmail = view.findViewById(R.id.edEmail);
         EditText edCode = view.findViewById(R.id.edCode);
@@ -48,11 +47,10 @@ public class SignUp extends Fragment {
 
         if (checkAuthorization()){
             setSignInFragment();
-            adapter.notifyDataSetChanged();
         }else{
             setSignUpFragment();
-            adapter.notifyDataSetChanged();
         }
+        adapter.notifyDataSetChanged();
 
         btnSignIn.setOnClickListener(v -> viewPager.setCurrentItem(1, false));
 
